@@ -1,0 +1,21 @@
+{% extends "branding/base.html" %}
+{% block content %}
+    {% for branding in brandings %}
+    <article class="media content-section">
+        <img class="rounded-circle article-img" src="{{ snippet.author.profile.image.url }}" 
+        width="100" 
+        height="100" />
+        <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#">{{ branding.author }}</a>
+                <small class="text-muted">{{ branding.created_at |date:"F d, Y" }}</small>
+            </div>
+            <h2><a class="article-title" href="#">{{ branding.topic }}</a></h2>
+            <p class="article-content" style="font-family:verdana;">{{ branding.branding_content }}</p>
+        </div>
+    </article>
+    {% endfor %}
+    {% for keyword in keywords %}
+        <li>{{ keyword.name }}</li>
+    {% endfor %}
+{% endblock content %}

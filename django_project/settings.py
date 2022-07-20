@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'branding.apps.BrandingConfig',
     'users.apps.UsersConfig',
     'blog.apps.BlogConfig',
     'crispy_forms',
@@ -126,7 +127,8 @@ MEDIA_URL  = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'blog-home'
+#LOGIN_REDIRECT_URL = 'blog-home'
+LOGIN_REDIRECT_URL = 'branding-home'
 LOGIN_URL = 'login'
 
 # Default primary key field type
