@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.models import User
 from django.views.generic import (
     ListView,
     DetailView, 
@@ -24,10 +25,23 @@ class BrandingListView(ListView):
     template_name = 'branding/home.html'# <app>/<model>_<viewtype>.html
     context_object_name = 'brandings'
     ordering = ['-created_at']
+    paginate_by = 3
 
     def get_context_data(self, **kwargs):
         context = super(BrandingListView, self).get_context_data(**kwargs)
         return context
+
+class UserBrandingListView(ListView):
+    model = Branding 
+    template_name = 'branding/user_brandings.html'# <app>/<model>_<viewtype>.html
+    context_object_name = 'brandings'
+    paginate_by = 3
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Branding.objects.filter(author=user).order_by('-created_at')
+
+
 
 class BrandingDetailView(DetailView):
     model = Branding 

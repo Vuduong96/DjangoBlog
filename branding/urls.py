@@ -4,12 +4,14 @@ from .views import (
     BrandingDetailView,
     BrandingCreateView,
     BrandingUpdateView,
-    BrandingDeleteView
+    BrandingDeleteView,
+    UserBrandingListView
 )
 from . import views
 
 urlpatterns = [
     path('', BrandingListView.as_view(), name='branding-home'),
+    path('user/<str:username>/', UserBrandingListView.as_view(), name='user-brandings'),
     path('branding/<int:pk>/', BrandingDetailView.as_view(), name='branding-detail'),
     path('branding/new/', BrandingCreateView.as_view(), name='branding-create'),
     path('branding/<int:pk>/update/', BrandingUpdateView.as_view(), name='branding-update'),

@@ -6,7 +6,7 @@
         height="100" />
         <div class="media-body">
             <div class="article-metadata">
-                <a class="mr-2" href="#">{{ object.author }}</a>
+                <a class="mr-2" href="{% url 'user-brandings' object.author.username %}">{{ object.author }}</a>
                 <small class="text-muted">{{ object.created_at |date:"F d, Y" }}</small>
                 {% if object.author == user %}
                     <a class="btn btn-outline-secondary btn-sm mt-1 mb-1" href="{% url 'branding-update' object.id %}">Update</a>
