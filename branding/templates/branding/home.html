@@ -1,21 +1,48 @@
 {% extends "branding/base.html" %}
 {% block content %}
-    {% for branding in brandings %}
-    <article class="media content-section">
-        <img class="rounded-circle article-img" src="{{ snippet.author.profile.image.url }}" 
-        width="100" 
-        height="100" />
-        <div class="media-body">
-            <div class="article-metadata">
-                <a class="mr-2" href="#">{{ branding.author }}</a>
-                <small class="text-muted">{{ branding.created_at |date:"F d, Y" }}</small>
-            </div>
-            <h2><a class="article-title" href="#">{{ branding.topic }}</a></h2>
-            <p class="article-content" style="font-family:verdana;">{{ branding.branding_content }}</p>
+<div class="jumbotron">
+    <h1 class="display-4">HELLO, WELCOME TO AI BRANDING APPLICATION!</h1>
+    <p class="lead">This is a simple application for generating branding content using AI.</p>
+    <hr class="my-4">
+    <p>Let's get to know this app more :).</p>
+    <p>
+      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Try with DEMO account
+      </button>
+    </p>
+    <div class="collapse" id="collapseExample">
+      <div class="card card-body">
+        <samp>Username: Demouser1</samp>
+        <samp>Pass: thisistesting</samp>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <samp>Here are some of our examples.</samp>
+  <div class="card-group">
+    {% for branding in brandings %} 
+    <div class="card" style="width: 50rem;">
+        <div class="card-body">
+          <h5 href="{% url 'branding-detail' branding.id %}">Topic:  <span class="badge badge-secondary">{{ branding.topic }}</span></h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ branding.author }}</h6>
+          <small class="text-muted">{{ branding.created_at |date:"F d, Y" }}</small>
+          <p class="card-text">{{ branding.branding_content }}</p>
+          <a href="{% url 'branding-detail' branding.id %}">Click for more details..</a>
         </div>
-    </article>
+      </div>
     {% endfor %}
-    {% for keyword in keywords %}
-        <li>{{ keyword.name }}</li>
-    {% endfor %}
+  </div>
+  <p></p>
+    <h5>Wanna give it a shot? :) <span class="badge badge-secondary">Try here</span></h5>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+    </svg>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <a class="btn btn-primary" href="{% url 'branding-create' %}" role="button">Try it</a>
+      </div>
+    </div>
 {% endblock content %}
+

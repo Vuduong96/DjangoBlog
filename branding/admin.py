@@ -1,9 +1,9 @@
 from ast import keyword
 from django.contrib import admin
-from .models import Branding, Keyword
+from .models import Branding
 
 admin.site.register(Branding)
 
-admin.site.register(Keyword)
+#admin.site.register(Keyword)
 
 
